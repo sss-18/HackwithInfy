@@ -1,0 +1,45 @@
+Sam is given a rectangular paper having dimensions h*w, where h is the height and w is the width. 
+Sam wants to fold the paper so its dimensions are h1*w1 in the minimum number of moves. 
+The paper can only be folded parallel to its edges and after folding, the dimensions should be integers.
+
+For example, given h=8 and w=4, fold the paper until it is h1, w1 = 6, 1. First fold along the long edge 6 units from a side, 
+resulting in a paper that is 6*4. Next, fold along the width 2 units from the 4 unit edge to have 6*2. 
+Fold along the center of the 2 unit edge to achieve a 6*1 page in three folds.
+
+
+
+
+<code>
+
+import math
+H,W=map(int,input().split())
+h1,w1=map(int,input().split())
+if H==h1:
+    f1=False
+else:
+    f1=True
+    
+if W==w1:
+    f2=False
+else:
+    f2=True
+    
+count=0
+while(f1 or f2):
+    if f1:
+        half=math.ceil(H/2)
+        if half<=h1:
+            f1=False
+            count+=1
+        else:
+            H=half
+            count+=1
+    if f2:
+        half=math.ceil(W/2)
+        if w1>=half:
+            count+=1
+            f2=False
+        else:
+            W=half
+            count+=1
+print(count)
