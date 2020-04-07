@@ -44,7 +44,7 @@ def Game_of_String(S,T,k):
                                          #so that the value becomes 98 which is b
         else:
             S[i]=chr(ord(S[i])+diff)
-    print(S)
+    print("YES")
     
 S=input()
 T=input()
