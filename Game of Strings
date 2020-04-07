@@ -1,0 +1,57 @@
+Question -- you are given 2 strings  S and T . And  an integer no. k
+            string S and T contains alphabets in lower case only.
+            both are of same lengths
+            your task is to convert String S to String T.
+            
+            rules -- 1 )  you can change any character in the string S only if the "distance" between that characters in the Strings are between 
+                          the range 1 to k.
+                          else : you cannot convert and print "NO"
+                          
+                          "distance"------diatance word means the letter gap between the characters
+                                          for eg. the distance between "a" and "d" is 3 and between "x" and "a" is 3
+                      2 ) you can only go in right direction.
+                      3 ) the path is circular ie. after "z" comes "a".
+                      4 ) you can choose a value from 1 to k multiple times
+ At last print "yes" if it is possible
+ else : print No
+ 
+ 
+  
+  
+  
+  
+  
+  <code>
+  
+  
+  
+#Game of strings
+def Game_of_String(S,T,k):
+    S=list(S)
+    T=list(T)
+    for i in range(len(S)):
+        diff = ord(T[i])-ord(S[i])
+        if diff<0:
+            diff=diff+26                 #(27 - S[i])+(T[i] - 1)   this is the new distance if we try to move from x to b
+        if diff>k:
+            print("NO")
+            break
+            
+            
+        elif ord(S[i])+diff>122:
+            S[i]=chr(ord(S[i])+diff-26)  #in case if we exceed the range of a-z for the values like as
+                                         #from x to b as 120+4 becomes 124 which is not b thus we add -26
+                                         #so that the value becomes 98 which is b
+        else:
+            S[i]=chr(ord(S[i])+diff)
+    print(S)
+    
+S=input()
+T=input()
+k=int(input())
+
+
+Game_of_String(S,T,k)
+
+            
+            
