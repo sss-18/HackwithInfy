@@ -1,0 +1,98 @@
+question - LARGE SUBARRAY PROBLEM
+ 
+you are given an array A with size N. You are also given two integers M and K. Another array B with size N X M as the array that is formed
+by concatinating M copies of array A.
+
+You have to find the number of subarrays of array B where sum is less thanor equal to K.
+
+#remember that you have to find the continuous subarrays whose sum is less than or equal to K.
+
+Input format:
+              @)the first line contains an integer  T denoting the no. of test cases
+              @)the second line contains three integers N, M, K
+              @)the third line contains N space seperated integers denoting the array elements.
+Output frmat:
+              @)for each test case print the required answer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\<code>
+
+T=int(input())
+for i in range(T):
+    N,M,K=map(int,input().split())
+    a=list(map(int,input().split()))
+    a=a*M
+    ln=N*M
+    c=0
+    s=0
+    for i in range(ln):
+        val=a[i]
+        if val<K:
+            c=c+1
+            s=a[i]
+            for j in range(i+1,ln):
+                if s+a[j] <= K:
+                    c=c+1
+                    s=s+a[j]
+                else:
+                    s=0
+                    break
+        else:
+            s=0
+    print(c)
+   
+   /<code>
+   
+   
+   
+  \< optimised code >
+  
+  
+T=int(input())
+for i in range(T):
+    N,M,K=map(int,input().split())
+    a=list(map(int,input().split()))
+    ln=N*M
+    c=0
+    sm=0
+    s=list()
+    for i in range(ln):
+        val=i%N
+        sm=sm+a[val]
+        s.append(sm)
+    s.insert(0,0)
+    j=0
+    i=0
+    while(j<ln+1  ):
+        if i<ln:
+            if s[i+1]-s[j]<=K:
+                i=i+1
+            elif s[i+1]-s[j]>K:
+                c=i-j+c
+                j=j+1
+                if s[i+1]-s[j]<=K and j<i:
+                    i=i+1
+                elif j>i:
+                    i=i+1
+        elif i==ln:
+            c=c+i-j
+            j=j+1
+     print(c%1000000007)
+  
+  
+  
+  
+   
+   /<optimised code>
+   
